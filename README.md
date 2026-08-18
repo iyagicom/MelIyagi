@@ -2,49 +2,53 @@
 
 **Freenet + I2P + BitTorrent Integrated Downloader (Tor / I2P Routing Support)**
 
-MelIyagi integrates Freenet (decentralized immutable storage), I2P (anonymous tunneling), and BitTorrent (P2P) into a single C++/Qt6 application.
+MelIyagi provides a unified downloader for Freenet, I2P, and BitTorrent, with optional Tor and I2P routing support.
 
 Simply paste a URI, and MelIyagi automatically detects the network and starts the download.
 
 > ### ⚠️ Usage Notice
 >
-> * This program provides connectivity through the Tor / I2P networks.
-> * **Routing through these networks does not guarantee complete anonymity.**
-> * Users are responsible for complying with applicable laws and copyright regulations.
-> * The developer assumes no responsibility for users' network activities.
+> - MelIyagi is a network client and does not provide or host downloaded content.
+> - Tor and I2P are external network services and are not included with MelIyagi.
+> - Routing traffic through Tor or I2P does not guarantee complete anonymity.
+> - Users are responsible for complying with all applicable laws, regulations, and copyright requirements.
+> - The developer does not control or determine how users use external networks or downloaded content.
 
 ---
 
 ## Key Features
 
-### Three Integrated Networks
+### Supported Networks
 
-| Network        | URI Example                               | Description                                           |
-| -------------- | ----------------------------------------- | ----------------------------------------------------- |
-| **Freenet**    | `freenet:CHK@abc...` `USK@pub.../site/0/` | Decentralized immutable storage, censorship-resistant |
-| **I2P**        | `http://xxx.i2p/path/file.zip`            | Anonymous network tunneling                           |
-| **BitTorrent** | `magnet:?xt=...` `.torrent`               | P2P downloading with five connection modes            |
+| Network | URI Example | Description |
+|---|---|---|
+| **Freenet** | `freenet:CHK@abc...` `USK@pub.../site/0/` | Decentralized immutable storage |
+| **I2P** | `http://xxx.i2p/path/file.zip` | Anonymous network routing |
+| **BitTorrent** | `magnet:?xt=...` `.torrent` | P2P downloading with multiple connection modes |
 
-### Five BitTorrent Connection Modes
+### BitTorrent Connection Modes
 
 Connection modes can be switched using the right-click menu.
 
-| Mode                    | Description                    | Anonymity            | Speed   |
-| ----------------------- | ------------------------------ | -------------------- | ------- |
-| Direct                  | UPnP/DHT/LSD enabled           | ❌ IP exposed         | Highest |
-| Tor                     | Via SOCKS5 (9050)              | Tor routing          | Low     |
-| Parallel Direct + Tor   | Two sessions simultaneously    | ⚠️ Direct IP exposed | High    |
-| I2P                     | Via SOCKS5 (4447), `.i2p` only | I2P routing          | Medium  |
-| Full Direct + Tor + I2P | Three sessions simultaneously  | ⚠️ Direct IP exposed | Highest |
+| Mode | Description | Network |
+|---|---|---|
+| Direct | UPnP/DHT/LSD enabled | Direct connection |
+| Tor | Via SOCKS5 (9050) | Tor |
+| Parallel Direct + Tor | Two sessions simultaneously | Direct + Tor |
+| I2P | Via SOCKS5 (4447), `.i2p` only | I2P |
+| Full Direct + Tor + I2P | Three sessions simultaneously | Direct + Tor + I2P |
 
 Peer sessions are identified as **Direct**, **Tor (Purple)**, or **I2P (Green)**.
 
+> **Note:** Direct connections may expose the user's IP address to peers.
+> Users should select the connection mode appropriate for their intended use.
+
 ### Supported Freenet Key Types
 
-* `CHK` — Content Hash Key (file downloads)
-* `SSK` — Signed Subspace Key (sites)
-* `USK` — Updatable Subspace Key (automatically tracks the latest edition)
-* `KSK` — Keyword Signed Key
+- `CHK` — Content Hash Key (file downloads)
+- `SSK` — Signed Subspace Key (sites)
+- `USK` — Updatable Subspace Key (automatically tracks the latest edition)
+- `KSK` — Keyword Signed Key
 
 ### Freenet Upload
 
@@ -54,15 +58,15 @@ Right-click a file → **ClientPut** → Automatically generate a CHK URI → Co
 
 Right-click a completed or downloaded item to:
 
-* **Preview** — Opens the first available file using the default application, with video > image > document priority
-* **Open Folder** — Opens the download folder in the file manager
-* **Start Seeding** — Manually resumes seeding of a completed torrent
+- **Preview** — Opens the first available file using the default application, with video > image > document priority
+- **Open Folder** — Opens the download folder in the file manager
+- **Start Seeding** — Manually resumes seeding of a completed torrent
 
-### Anonymity Protection
+### Connection Mode Persistence
 
-* New torrents are registered in **Tor mode by default**.
-* The selected connection mode is saved in the session file and restored after restarting the application.
-* `.torrent` files can be opened quickly using the 📂 button in the title bar.
+- New torrents use **Tor mode by default**.
+- The selected connection mode is saved in the session file and restored after restarting the application.
+- `.torrent` files can be opened quickly using the 📂 button in the title bar.
 
 ---
 
@@ -72,13 +76,20 @@ Right-click a completed or downloaded item to:
 
 **For Freenet downloads:**
 
-* Run a [Hyphanet](https://www.hyphanet.org) node.
-* Default FCP address: `127.0.0.1:9481`
+- Run a [Hyphanet](https://www.hyphanet.org) node separately.
+- Default FCP address: `127.0.0.1:9481`
 
-**For I2P + BitTorrent anonymous routing:**
+**For I2P routing:**
 
-* Install and run `i2pd`.
-* Install and run Tor when Tor routing is required.
+- Install and run `i2pd` separately.
+- Default I2P SAM port: `7656`
+- Default I2P HTTP proxy port: `4444`
+- Default I2P Torrent SOCKS5 port: `4447`
+
+**For Tor routing:**
+
+- Install and run Tor separately.
+- Default Tor SOCKS5 port: `9050`
 
 ### Ubuntu / Debian
 
@@ -165,53 +176,59 @@ Usage and licensing for the Windows version are managed through the Microsoft St
 
 # 한국어
 
+### 한국어 README
+
 # MelIyagi v1.18.0
 
 **Freenet + I2P + BitTorrent 통합 다운로더 (Tor / I2P 라우팅 지원)**
 
-MelIyagi는 Freenet(분산 불변 스토리지), I2P(익명 터널), BitTorrent(P2P)를 하나의 C++/Qt6 애플리케이션으로 통합합니다.
+MelIyagi는 Freenet, I2P, BitTorrent를 하나의 다운로더에서 사용할 수 있도록 지원하며, 선택적으로 Tor 및 I2P 라우팅을 사용할 수 있습니다.
 
 URI를 붙여넣으면 네트워크를 자동으로 감지하여 다운로드를 시작합니다.
 
 > ### ⚠️ 사용 고지
 >
-> * 이 프로그램은 Tor / I2P 네트워크를 통한 연결 기능을 제공합니다.
-> * **Tor / I2P를 통한 라우팅이 완전한 익명성을 보장하는 것은 아닙니다.**
-> * 사용자는 관련 법률 및 저작권 규정을 준수해야 합니다.
-> * 개발자는 사용자의 네트워크 사용 행위에 대해 책임지지 않습니다.
+> - MelIyagi는 네트워크 클라이언트이며 다운로드되는 콘텐츠를 제공하거나 호스팅하지 않습니다.
+> - Tor와 I2P는 MelIyagi에 포함되어 있지 않으며 별도의 네트워크 서비스로 사용됩니다.
+> - Tor 또는 I2P를 통한 라우팅이 완전한 익명성을 보장하는 것은 아닙니다.
+> - 사용자는 모든 관련 법률, 규정 및 저작권 규정을 준수할 책임이 있습니다.
+> - 개발자는 사용자의 외부 네트워크 이용 방법이나 다운로드한 콘텐츠를 통제하지 않습니다.
 
 ---
 
 ## 주요 기능
 
-### 세 가지 네트워크 통합 지원
+### 지원 네트워크
 
-| 네트워크           | URI 예시                                    | 설명                       |
-| -------------- | ----------------------------------------- | ------------------------ |
-| **Freenet**    | `freenet:CHK@abc...` `USK@pub.../site/0/` | 분산 불변 스토리지, 검열 저항형 네트워크  |
-| **I2P**        | `http://xxx.i2p/path/file.zip`            | 익명 네트워크 터널링              |
-| **BitTorrent** | `magnet:?xt=...` `.torrent`               | 5가지 연결 모드를 지원하는 P2P 다운로드 |
+| 네트워크 | URI 예시 | 설명 |
+|---|---|---|
+| **Freenet** | `freenet:CHK@abc...` `USK@pub.../site/0/` | 분산 불변 스토리지 |
+| **I2P** | `http://xxx.i2p/path/file.zip` | 익명 네트워크 라우팅 |
+| **BitTorrent** | `magnet:?xt=...` `.torrent` | 다양한 연결 모드를 지원하는 P2P 다운로드 |
 
-### BitTorrent 5가지 연결 모드
+### BitTorrent 연결 모드
 
 우클릭 메뉴에서 연결 모드를 변경할 수 있습니다.
 
-| 모드                | 설명                          | 익명성            | 속도 |
-| ----------------- | --------------------------- | -------------- | -- |
-| 직접 연결             | UPnP/DHT/LSD 활성화            | ❌ IP 노출        | 최고 |
-| Tor               | SOCKS5 (9050) 경유            | Tor 라우팅        | 낮음 |
-| 병렬 직접 + Tor       | 두 세션 동시 사용                  | ⚠️ 직접 연결 IP 노출 | 높음 |
-| I2P               | SOCKS5 (4447) 경유, `.i2p` 전용 | I2P 라우팅        | 중간 |
-| 전체 직접 + Tor + I2P | 세 세션 동시 사용                  | ⚠️ 직접 연결 IP 노출 | 최고 |
+| 모드 | 설명 | 네트워크 |
+|---|---|---|
+| 직접 연결 | UPnP/DHT/LSD 활성화 | 직접 연결 |
+| Tor | SOCKS5 (9050) 경유 | Tor |
+| 병렬 직접 + Tor | 두 세션 동시 사용 | 직접 + Tor |
+| I2P | SOCKS5 (4447) 경유, `.i2p` 전용 | I2P |
+| 전체 직접 + Tor + I2P | 세 세션 동시 사용 | 직접 + Tor + I2P |
 
-피어 목록에서 세션을 **직접**, **Tor (보라색)**, **I2P (초록색)**으로 구분하여 표시합니다.
+피어 세션은 **직접**, **Tor (보라색)**, **I2P (초록색)**으로 구분됩니다.
+
+> **참고:** 직접 연결에서는 사용자의 IP 주소가 피어에게 노출될 수 있습니다.
+> 사용자는 자신의 목적에 적합한 연결 모드를 선택해야 합니다.
 
 ### 지원하는 Freenet 키 타입
 
-* `CHK` — 콘텐츠 해시 키 (파일 다운로드)
-* `SSK` — 서명된 서브스페이스 키 (사이트)
-* `USK` — 업데이트 가능한 서브스페이스 키 (최신 에디션 자동 추적)
-* `KSK` — 키워드 서명 키
+- `CHK` — 콘텐츠 해시 키 (파일 다운로드)
+- `SSK` — 서명된 서브스페이스 키 (사이트)
+- `USK` — 업데이트 가능한 서브스페이스 키 (최신 에디션 자동 추적)
+- `KSK` — 키워드 서명 키
 
 ### Freenet 업로드
 
@@ -221,15 +238,15 @@ URI를 붙여넣으면 네트워크를 자동으로 감지하여 다운로드를
 
 다운로드 항목을 우클릭하여 다음 기능을 사용할 수 있습니다.
 
-* **미리보기** — 동영상 > 이미지 > 문서 순으로 첫 번째 파일을 기본 앱으로 열기
-* **폴더 열기** — 다운로드 폴더를 파일 관리자에서 열기
-* **시딩 시작** — 완료된 토렌트의 시딩을 수동으로 재개
+- **미리보기** — 동영상 > 이미지 > 문서 순으로 첫 번째 파일을 기본 앱으로 열기
+- **폴더 열기** — 다운로드 폴더를 파일 관리자에서 열기
+- **시딩 시작** — 완료된 토렌트의 시딩을 수동으로 재개
 
-### 익명성 보호
+### 연결 모드 저장
 
-* 신규 토렌트는 기본적으로 **Tor 모드**로 등록됩니다.
-* 선택한 연결 모드는 세션 파일에 저장되며 프로그램을 재시작해도 유지됩니다.
-* 타이틀바의 📂 버튼을 사용하여 `.torrent` 파일을 빠르게 열 수 있습니다.
+- 신규 토렌트는 **Tor 모드**를 기본으로 사용합니다.
+- 선택한 연결 모드는 세션 파일에 저장되며 프로그램을 재시작해도 유지됩니다.
+- 타이틀바의 📂 버튼으로 `.torrent` 파일을 빠르게 열 수 있습니다.
 
 ---
 
@@ -239,13 +256,20 @@ URI를 붙여넣으면 네트워크를 자동으로 감지하여 다운로드를
 
 **Freenet 다운로드:**
 
-* [Hyphanet](https://www.hyphanet.org) 노드를 실행합니다.
-* 기본 FCP 주소: `127.0.0.1:9481`
+- [Hyphanet](https://www.hyphanet.org) 노드를 별도로 실행해야 합니다.
+- 기본 FCP 주소: `127.0.0.1:9481`
 
-**I2P + BitTorrent 익명 라우팅:**
+**I2P 라우팅:**
 
-* `i2pd`를 별도로 설치하고 실행합니다.
-* Tor 라우팅이 필요한 경우 Tor를 별도로 설치하고 실행합니다.
+- `i2pd`를 별도로 설치하고 실행해야 합니다.
+- 기본 I2P SAM 포트: `7656`
+- 기본 I2P HTTP 프록시 포트: `4444`
+- 기본 I2P Torrent SOCKS5 포트: `4447`
+
+**Tor 라우팅:**
+
+- Tor를 별도로 설치하고 실행해야 합니다.
+- 기본 Tor SOCKS5 포트: `9050`
 
 ### Ubuntu / Debian
 
