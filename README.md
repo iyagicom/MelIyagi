@@ -73,7 +73,6 @@ Right-click a completed or downloaded item to:
 **For Freenet downloads:**
 
 * Run a [Hyphanet](https://www.hyphanet.org) node.
-* Java is required.
 * Default FCP address: `127.0.0.1:9481`
 
 **For I2P + BitTorrent anonymous routing:**
@@ -239,7 +238,6 @@ URI를 붙여넣으면 네트워크를 자동으로 감지하여 다운로드를
 **Freenet 다운로드:**
 
 * [Hyphanet](https://www.hyphanet.org) 노드를 실행해야 합니다.
-* Java가 필요합니다.
 * 기본 FCP 주소: `127.0.0.1:9481`
 
 **I2P + BitTorrent 익명 라우팅:**
