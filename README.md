@@ -29,13 +29,13 @@ Simply paste a URI, and MelIyagi automatically detects the network and starts th
 
 Connection modes can be switched using the right-click menu.
 
-| Mode                    | Description                   | Anonymity            | Speed   |
-| ----------------------- | ----------------------------- | -------------------- | ------- |
-| Direct                  | UPnP/DHT/LSD enabled          | ❌ IP exposed         | Highest |
-| Tor                     | Via SOCKS5 (9050)             | Tor routing          | Low     |
-| Parallel Direct + Tor   | Two sessions simultaneously   | ⚠️ Direct IP exposed | High    |
-| I2P                     | Via SOCKS5 (4447), .i2p only  | I2P routing          | Medium  |
-| Full Direct + Tor + I2P | Three sessions simultaneously | ⚠️ Direct IP exposed | Highest |
+| Mode                    | Description                    | Anonymity            | Speed   |
+| ----------------------- | ------------------------------ | -------------------- | ------- |
+| Direct                  | UPnP/DHT/LSD enabled           | ❌ IP exposed         | Highest |
+| Tor                     | Via SOCKS5 (9050)              | Tor routing          | Low     |
+| Parallel Direct + Tor   | Two sessions simultaneously    | ⚠️ Direct IP exposed | High    |
+| I2P                     | Via SOCKS5 (4447), `.i2p` only | I2P routing          | Medium  |
+| Full Direct + Tor + I2P | Three sessions simultaneously  | ⚠️ Direct IP exposed | Highest |
 
 Peer sessions are identified as **Direct**, **Tor (Purple)**, or **I2P (Green)**.
 
@@ -77,7 +77,7 @@ Right-click a completed or downloaded item to:
 
 **For I2P + BitTorrent anonymous routing:**
 
-* Install and run i2pd.
+* Install and run `i2pd`.
 * Install and run Tor when Tor routing is required.
 
 ### Ubuntu / Debian
@@ -96,17 +96,18 @@ No source code or compiler is required to run the distributed package.
 ## Usage
 
 1. Launch MelIyagi.
-2. i2pd starts automatically when the embedded I2P component is enabled.
+2. Start `i2pd` separately when using I2P.
 3. For Freenet, run a Hyphanet node separately.
-4. Paste a Freenet, I2P, or magnet URI into the URI input field, or open a `.torrent` file.
-5. Right-click a torrent to select the connection mode:
+4. Start Tor separately when Tor routing is required.
+5. Paste a Freenet, I2P, or magnet URI into the URI input field, or open a `.torrent` file.
+6. Right-click a torrent to select the connection mode:
 
    * Direct
    * Tor
    * Parallel Direct + Tor
    * I2P
    * Full Direct + Tor + I2P
-6. After the download is complete, right-click the item and select **Preview** or **Open Folder**.
+7. After the download is complete, right-click the item and select **Preview** or **Open Folder**.
 
 ---
 
@@ -133,6 +134,7 @@ No source code or compiler is required to run the distributed package.
 Copyright (c) 2026 IYAGI-INC. All rights reserved.
 
 This software is distributed **in executable form only**.
+
 The source code is not publicly available.
 
 ### Linux Version
@@ -237,13 +239,13 @@ URI를 붙여넣으면 네트워크를 자동으로 감지하여 다운로드를
 
 **Freenet 다운로드:**
 
-* [Hyphanet](https://www.hyphanet.org) 노드를 실행해야 합니다.
+* [Hyphanet](https://www.hyphanet.org) 노드를 실행합니다.
 * 기본 FCP 주소: `127.0.0.1:9481`
 
 **I2P + BitTorrent 익명 라우팅:**
 
-* i2pd를 설치하고 실행합니다.
-* Tor 라우팅이 필요한 경우 Tor를 설치하고 실행합니다.
+* `i2pd`를 별도로 설치하고 실행합니다.
+* Tor 라우팅이 필요한 경우 Tor를 별도로 설치하고 실행합니다.
 
 ### Ubuntu / Debian
 
@@ -261,17 +263,18 @@ meliyagi
 ## 사용 방법
 
 1. MelIyagi를 실행합니다.
-2. 내장 I2P 기능이 활성화된 경우 i2pd가 자동으로 시작됩니다.
+2. I2P를 사용하는 경우 `i2pd`를 별도로 실행합니다.
 3. Freenet을 사용하는 경우 Hyphanet 노드를 별도로 실행합니다.
-4. URI 입력란에 Freenet, I2P 또는 magnet URI를 붙여넣거나 `.torrent` 파일을 엽니다.
-5. 토렌트를 우클릭하여 연결 모드를 선택합니다.
+4. Tor 라우팅을 사용하는 경우 Tor를 별도로 실행합니다.
+5. URI 입력란에 Freenet, I2P 또는 magnet URI를 붙여넣거나 `.torrent` 파일을 엽니다.
+6. 토렌트를 우클릭하여 연결 모드를 선택합니다.
 
    * 직접 연결
    * Tor
    * 병렬 직접 + Tor
    * I2P
    * 전체 직접 + Tor + I2P
-6. 다운로드 완료 후 항목을 우클릭하여 **미리보기** 또는 **폴더 열기**를 선택합니다.
+7. 다운로드 완료 후 항목을 우클릭하여 **미리보기** 또는 **폴더 열기**를 선택합니다.
 
 ---
 
@@ -298,6 +301,7 @@ meliyagi
 Copyright (c) 2026 IYAGI-INC. All rights reserved.
 
 본 소프트웨어는 **실행 파일 형태로만 배포됩니다.**
+
 소스 코드는 공개되지 않습니다.
 
 ### Linux 버전
